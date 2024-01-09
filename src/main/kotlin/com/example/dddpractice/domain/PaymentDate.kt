@@ -17,5 +17,11 @@ sealed interface PaymentDate {
         }
     }
 
-    private data class PaymentDateImpl(val value: LocalDate) : PaymentDate
+    fun value(): LocalDate
+
+    private data class PaymentDateImpl(val value: LocalDate) : PaymentDate {
+        override fun value(): LocalDate {
+            return this.value
+        }
+    }
 }

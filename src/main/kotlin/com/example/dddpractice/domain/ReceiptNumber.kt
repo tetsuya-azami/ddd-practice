@@ -16,5 +16,11 @@ sealed interface ReceiptNumber {
         }
     }
 
-    private data class ReceiptNumberImpl(val value: String) : ReceiptNumber
+    fun value(): String
+
+    private data class ReceiptNumberImpl(val value: String) : ReceiptNumber {
+        override fun value(): String {
+            return this.value
+        }
+    }
 }

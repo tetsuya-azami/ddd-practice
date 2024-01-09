@@ -12,6 +12,9 @@ class Payment(
 ) {
     init {
         if (paymentAmount != paymentMethod.sumOf { it.paymentAmount.value() }) throw IllegalArgumentException("支払い金額と購入金額が不整合です。")
+        if (paymentAmount.value() != paymentPurchase.sumOf { it.paymentAmount().value() }) {
+            throw IllegalArgumentException("支払い金額と購入金額が不整合です。")
+        }
     }
 }
 
