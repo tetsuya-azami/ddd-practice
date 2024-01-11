@@ -1,14 +1,16 @@
 package com.example.dddpractice.domain
 
+// Paymentは集約ルート。
+// 集約に対する操作は必ず集約ルートを経由して行われる。
 class Payment(
     val receiptNumber: ReceiptNumber,
-    val paymentDate: PaymentDate,
-    val paymentAmount: PaymentAmount,
-    val paymentMember: PaymentMember,
-    val shopCode: ShopCode,
-    val couponCode: CouponCode?,
-    val paymentMethod: List<PaymentMethod>,
-    val paymentPurchase: List<PaymentPurchase>
+    private val paymentDate: PaymentDate,
+    private val paymentAmount: PaymentAmount,
+    private val paymentMember: PaymentMember,
+    private val shopCode: ShopCode,
+    private val couponCode: CouponCode?,
+    private val paymentMethod: List<PaymentMethod>,
+    private val paymentPurchase: List<PaymentPurchase>
 ) {
     init {
         if (paymentAmount != paymentMethod.sumOf { it.paymentAmount.value() }) throw IllegalArgumentException("支払い金額と購入金額が不整合です。")
